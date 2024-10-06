@@ -31,9 +31,6 @@
         name: "{{ vm_name }}"
         clone: "{{ template_id }}"
         full: yes
-        memory: "{{ memory }}"
-        cores: "{{ cores }}"
-        sockets: "{{ cpus }}"
         bootdisk: scsi0
         agent: 1
         onboot: true
@@ -49,6 +46,9 @@
         api_token_id: "{{ proxmox_token_id }}"
         api_token_secret: "{{ proxmox_token_secret }}"
         vmid: "{{ template_id }}"
+        memory: "{{ memory }}"
+        cores: "{{ cores }}"
+        sockets: "{{ cpus }}"
         disk: scsi0
         size: "{{ disk_size }}"
         state: resized
