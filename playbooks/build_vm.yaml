@@ -61,6 +61,7 @@
         memory: "{{ memory }}"
         cores: "{{ cores }}"
         sockets: "{{ cpus }}"
+        vga: std
         ciuser: "{{ ci_user }}"
         cipassword: "{{ ci_password }}"
         ipconfig:
