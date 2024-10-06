@@ -48,18 +48,18 @@
         size: "{{ disk_size }}"
         state: resized
 
-    - name: Configure Memory and CPU/Core for the VM
-      community.general.proxmox_kvm:
-        node: "{{ node }}"
-        api_host: "{{ proxmox_host }}"
-        api_token_id: "{{ proxmox_token_id }}"
-        api_token_secret: "{{ proxmox_token_secret }}"
-        api_user: "{{ api_user }}"
-        vmid: "{{ template_id }}"
-        memory: "{{ memory }}"
-        cores: "{{ cores }}"
-        sockets: "{{ cpus }}"
-        update: true
+    # - name: Configure Memory and CPU/Core for the VM
+    #   community.general.proxmox_kvm:
+    #     node: "{{ node }}"
+    #     api_host: "{{ proxmox_host }}"
+    #     api_token_id: "{{ proxmox_token_id }}"
+    #     api_token_secret: "{{ proxmox_token_secret }}"
+    #     api_user: "{{ api_user }}"
+    #     vmid: "{{ template_id }}"
+    #     memory: "{{ memory }}"
+    #     cores: "{{ cores }}"
+    #     sockets: "{{ cpus }}"
+    #     update: true
 
     - name: Configure Cloud-Init for the VM
       community.general.proxmox_kvm:
