@@ -17,7 +17,7 @@
     ci_password: "{{ ci_password }}"
     # ipconfig: 
     #   - ipconfig0: "{{ ipconfig }}"
-    ipconfig0: "{{ ipconfig }}"
+    ipconfig0: "ip=192.168.0.104/24,gw=192.168.0.1"
     nameserver: "{{ nameserver }}"
 
   tasks:
@@ -64,12 +64,12 @@
         cipassword: "{{ ci_password }}"
         update: true
 
-    - name: Start the VM
-      community.general.proxmox_kvm:
-        node: "{{ node }}"
-        api_host: "{{ proxmox_host }}"
-        api_token_id: "{{ proxmox_token_id }}"
-        api_token_secret: "{{ proxmox_token_secret }}"
-        api_user: "{{ api_user }}"
-        vmid: "{{ template_id }}"
-        state: started
+    # - name: Start the VM
+    #   community.general.proxmox_kvm:
+    #     node: "{{ node }}"
+    #     api_host: "{{ proxmox_host }}"
+    #     api_token_id: "{{ proxmox_token_id }}"
+    #     api_token_secret: "{{ proxmox_token_secret }}"
+    #     api_user: "{{ api_user }}"
+    #     vmid: "{{ template_id }}"
+    #     state: started
