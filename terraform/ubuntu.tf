@@ -71,12 +71,5 @@ resource "proxmox_vm_qemu" "coolify" {
             "sleep 30",
             "sudo ip a",
         ]
-        connection {
-            type     = "ssh"
-            user     = "coolify"
-            password = "coolify"
-            host     = "192.168.0.106"
-            timeout  = "5m"
-        }
     }
 }
