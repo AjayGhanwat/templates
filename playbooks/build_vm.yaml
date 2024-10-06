@@ -16,12 +16,22 @@
         full: yes
         memory: "{{ memory }}"
         cores: "{{ cores }}"
-        cpu: "{{ cpus }}"
-        boot: c
+        sockets: "{{ cpus }}"
         bootdisk: scsi0
         agent: 1
         onboot: true
         storage: local-lvm
+
+    - name: Grow VM disk
+      community.general.proxmox_disk:
+        api_host: "{{ proxmox_host }}"
+        api_user: "{{ api_user }}"
+        api_token_id: "{{ proxmox_token_id }}"
+        api_token_secret: "{{ proxmox_token_secret }}"
+        vmid: "{{ template_id }}"
+        disk: scsi0
+        size: "{{ disk_size }}"
+        state: resized
 
     - name: Configure Cloud-Init for the VM
       community.general.proxmox_kvm:
@@ -31,10 +41,12 @@
         api_token_secret: "{{ proxmox_token_secret }}"
         api_user: "{{ api_user }}"
         vmid: "{{ template_id }}"
-        ciuser: "ubuntu"                   # Default Ubuntu Cloud-Init user
-        cipassword: "ubuntu_password"      # Password for the Cloud-Init user
-        ipconfig: "{{ ipconfig }}"
+        ciuser: "{{ ci_user }}"
+        cipassword: "{{ ci_password }}"
+        ipconfig: 
+          - "{{ ipconfig }}"
         nameservers: "{{ nameserver }}"
+        update: true
 
     - name: Start the VM
       community.general.proxmox_kvm:
