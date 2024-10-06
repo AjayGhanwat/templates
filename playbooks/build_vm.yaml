@@ -15,8 +15,9 @@
     disk_size: "{{ disk_size }}"
     ci_user: "{{ ci_user }}"
     ci_password: "{{ ci_password }}"
-    ipconfig: 
-      - ipconfig0: "{{ ipconfig }}"
+    # ipconfig: 
+    #   - ipconfig0: "{{ ipconfig }}"
+    ipconfig0: "{{ ipconfig }}"
     nameserver: "{{ nameserver }}"
 
   tasks:
