@@ -33,9 +33,8 @@
         vmid: "{{ vm_id }}"
         ciuser: "ubuntu"                   # Default Ubuntu Cloud-Init user
         cipassword: "ubuntu_password"      # Password for the Cloud-Init user
-        ipconfig: ip=static
-        ip_address: "{{ ip_address }}"
-        nameserver: "{{ nameserver }}"
+        ipconfig: "{{ ipconfig }}"
+        nameservers: "{{ nameserver }}"
 
     - name: Start the VM
       community.general.proxmox_kvm:
