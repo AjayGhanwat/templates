@@ -59,8 +59,6 @@
         vmid: "{{ vm_id }}"
         ciuser: "{{ ci_user }}"
         cipassword: "{{ ci_password }}"
-        ipconfig:
-          - ip=dhcp
         update: true
 
     - name: Start the VM
