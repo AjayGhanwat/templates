@@ -17,7 +17,6 @@ resource "proxmox_vm_qemu" "coolify" {
     sockets = 2
 
     memory = 8192
-    cloudinit_cdrom_storage = "local-lvm"
     scsihw = "virtio-scsi-single"
 
     vga {
@@ -37,6 +36,16 @@ resource "proxmox_vm_qemu" "coolify" {
         storage = "local-lvm"
         type    = "scsi"
     }
+
+    disks {
+    ide {
+      ide3 {
+        cloudinit {
+          storage = "local-lvm"
+        }
+      }
+    }
+  }
 
     os_type = "cloud-init"
 
