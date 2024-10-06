@@ -28,25 +28,28 @@ resource "proxmox_vm_qemu" "coolify" {
         model  = "virtio"
     }
 
-    disk {
-        slot = 1
-        backup  = true
-        cache   = "none"
-        format  = "raw"
-        size    = "200G"
-        storage = "local-lvm"
-        type    = "scsi"
-    }
-
     disks {
-    ide {
-      ide3 {
-        cloudinit {
-          storage = "local-lvm"
+        scsi {
+            scsi0 {
+                disk {
+                    slot = 1
+                    backup  = true
+                    cache   = "none"
+                    format  = "raw"
+                    size    = "200G"
+                    storage = "local-lvm"
+                    type    = "scsi"
+                }
+            }
         }
-      }
+        ide {
+            ide3 {
+                cloudinit {
+                    storage = "local-lvm"
+                }
+            }
+        }
     }
-  }
 
   serial {
     id   = 0
