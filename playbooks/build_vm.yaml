@@ -30,7 +30,7 @@
         api_token_id: "{{ proxmox_token_id }}"
         api_token_secret: "{{ proxmox_token_secret }}"
         api_user: "{{ api_user }}"
-        vmid: "{{ vm_id }}"
+        vmid: "{{ template_id }}"
         ciuser: "ubuntu"                   # Default Ubuntu Cloud-Init user
         cipassword: "ubuntu_password"      # Password for the Cloud-Init user
         ipconfig: "{{ ipconfig }}"
@@ -43,5 +43,5 @@
         api_token_id: "{{ proxmox_token_id }}"
         api_token_secret: "{{ proxmox_token_secret }}"
         api_user: "{{ api_user }}"
-        vmid: "{{ vm_id }}"
+        vmid: "{{ template_id }}"
         state: started
