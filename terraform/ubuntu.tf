@@ -1,6 +1,6 @@
 resource "proxmox_vm_qemu" "dns" {
     target_node = "pve"
-    vmid = 102
+    vmid = 103
     name = "DNS"
     desc = "DNS Server"
 
