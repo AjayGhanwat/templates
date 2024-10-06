@@ -29,11 +29,13 @@ resource "proxmox_vm_qemu" "coolify" {
     }
 
     disk {
+        id = 1
         backup  = true
         cache   = "none"
         format  = "raw"
         size    = "200G"
         storage = "local-lvm"
+        storage_type = "lvm"
         type    = "scsi"
     }
 
@@ -45,6 +47,11 @@ resource "proxmox_vm_qemu" "coolify" {
         }
       }
     }
+  }
+
+  serial {
+    id   = 0
+    type = "socket"
   }
 
     os_type = "cloud-init"
