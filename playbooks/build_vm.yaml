@@ -30,8 +30,6 @@
         vmid: "{{ vm_id }}"
         ciuser: "ubuntu"                   # Default Ubuntu Cloud-Init user
         cipassword: "ubuntu_password"      # Password for the Cloud-Init user
-        nameserver: "8.8.8.8"
-        searchdomain: "local"
         ipconfig: ip=dhcp
 
     - name: Start the VM
