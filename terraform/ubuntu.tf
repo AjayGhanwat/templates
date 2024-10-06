@@ -1,7 +1,7 @@
 resource "proxmox_vm_qemu" "coolify_resource" {
     target_node = "pve"
     vmid = 102
-    name = "coolify_resource"
+    name = "CoolifyResource"
     desc = "Coolify Resource Server"
 
     onboot = true 
