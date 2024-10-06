@@ -50,7 +50,7 @@
         size: "{{ disk_size }}"
         state: resized
 
-    - name: Configure Cloud-Init for the VM
+    - name: Configure Memory and CPU/Core for the VM
       community.general.proxmox_kvm:
         node: "{{ node }}"
         api_host: "{{ proxmox_host }}"
@@ -61,6 +61,16 @@
         memory: "{{ memory }}"
         cores: "{{ cores }}"
         sockets: "{{ cpus }}"
+        update: true
+
+    - name: Configure Cloud-Init for the VM
+      community.general.proxmox_kvm:
+        node: "{{ node }}"
+        api_host: "{{ proxmox_host }}"
+        api_token_id: "{{ proxmox_token_id }}"
+        api_token_secret: "{{ proxmox_token_secret }}"
+        api_user: "{{ api_user }}"
+        vmid: "{{ template_id }}"
         ciuser: "{{ ci_user }}"
         cipassword: "{{ ci_password }}"
         sshkeys: "{{ ssh_key }}"
@@ -68,12 +78,12 @@
           ipconfig0: "{{ ipconfig }}"
         update: true
 
-    # - name: Start the VM
-    #   community.general.proxmox_kvm:
-    #     node: "{{ node }}"
-    #     api_host: "{{ proxmox_host }}"
-    #     api_token_id: "{{ proxmox_token_id }}"
-    #     api_token_secret: "{{ proxmox_token_secret }}"
-    #     api_user: "{{ api_user }}"
-    #     vmid: "{{ template_id }}"
-    #     state: started
+    - name: Start the VM
+      community.general.proxmox_kvm:
+        node: "{{ node }}"
+        api_host: "{{ proxmox_host }}"
+        api_token_id: "{{ proxmox_token_id }}"
+        api_token_secret: "{{ proxmox_token_secret }}"
+        api_user: "{{ api_user }}"
+        vmid: "{{ template_id }}"
+        state: started
