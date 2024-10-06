@@ -64,6 +64,7 @@
         vga: std
         ciuser: "{{ ci_user }}"
         cipassword: "{{ ci_password }}"
+        sshkeys: "{{ ssh_key }}"
         ipconfig:
           ipconfig0: "{{ ipconfig }}"
         update: true
