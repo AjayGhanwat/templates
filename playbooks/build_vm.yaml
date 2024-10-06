@@ -34,8 +34,6 @@
         bootdisk: scsi0
         agent: 1
         onboot: true
-        net:
-          net0: 'virtio,bridge=vmbr0'
         storage: local-lvm
         timeout: 1200
 
