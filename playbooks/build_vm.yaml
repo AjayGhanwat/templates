@@ -16,11 +16,13 @@
         full: yes
         memory: "{{ memory }}"
         cores: "{{ cores }}"
-        scsi: local-lvm:{{ disk_size }}  # Updated to use 'scsi' instead of 'scsi0'
-        net: virtio,bridge=vmbr0         # Updated to use 'net' instead of 'net0'
-        boot: c                         # Boot from disk
-        bootdisk: scsi0                 # Boot disk set as scsi0
-        agent: 1                        # Enable QEMU agent
+        scsi: "local-lvm:{{ disk_size }}"  # Disk setup
+        net:
+          - model: virtio                  # Use Virtio for network interface
+            bridge: vmbr0                  # Network bridge for Proxmox
+        boot: c                            # Boot from disk
+        bootdisk: scsi0                    # Boot disk set as scsi0
+        agent: 1                           # Enable QEMU agent
 
     - name: Configure Cloud-Init for the VM
       community.general.proxmox_kvm:
@@ -29,8 +31,8 @@
         api_password: "{{ proxmox_password }}"
         api_host: "{{ proxmox_host }}"
         vmid: "{{ vm_id }}"
-        ciuser: "ubuntu"                 # Default Ubuntu Cloud-Init user
-        cipassword: "ubuntu_password"    # Password for the Cloud-Init user
+        ciuser: "ubuntu"                   # Default Ubuntu Cloud-Init user
+        cipassword: "ubuntu_password"      # Password for the Cloud-Init user
         nameserver: "8.8.8.8"
         searchdomain: "local"
         ipconfig0: ip=dhcp
