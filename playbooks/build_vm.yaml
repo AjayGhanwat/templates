@@ -32,7 +32,7 @@
         cipassword: "ubuntu_password"      # Password for the Cloud-Init user
         nameserver: "8.8.8.8"
         searchdomain: "local"
-        ipconfig0: ip=dhcp
+        ipconfig: ip=dhcp
 
     - name: Start the VM
       community.general.proxmox_kvm:
