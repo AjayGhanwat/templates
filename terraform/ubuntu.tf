@@ -1,4 +1,4 @@
-resource "proxmox_vm_qemu" "coolify-resource" {
+resource "proxmox_vm_qemu" "coolify_resource" {
     target_node = "pve"
     vmid = 102
     name = "Coolify Resource"
