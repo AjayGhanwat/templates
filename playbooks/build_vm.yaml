@@ -43,8 +43,7 @@
         vmid: "{{ template_id }}"
         ciuser: "{{ ci_user }}"
         cipassword: "{{ ci_password }}"
-        ipconfig: 
-          - "{{ ipconfig }}"
+        ipconfig:  "{{ ipconfig }}"
         nameservers: "{{ nameserver }}"
         update: true
 
