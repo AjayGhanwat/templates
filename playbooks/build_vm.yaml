@@ -37,6 +37,7 @@
         agent: 1
         onboot: true
         storage: local-lvm
+        timeout: 1200
 
     - name: Grow VM disk
       community.general.proxmox_disk:
