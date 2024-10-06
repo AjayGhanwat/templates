@@ -15,12 +15,7 @@
     disk_size: "{{ disk_size }}"
     ci_user: "{{ ci_user }}"
     ci_password: "{{ ci_password }}"
-    # ipconfig: 
-    #   - ipconfig0: "{{ ipconfig }}"
-    net:
-      net0: 'virtio,bridge=vmbr0'
-    ipconfig:
-      ipconfig0: "{{ ipconfig }}"
+    ipconfig: "{{ ipconfig }}"
     nameserver: "{{ nameserver }}"
     sshkeys: "{{ ssh_key }}"
 
@@ -42,6 +37,8 @@
         bootdisk: scsi0
         agent: 1
         onboot: true
+        net:
+          net0: 'virtio,bridge=vmbr0'
         storage: local-lvm
         timeout: 1200
 
@@ -66,6 +63,8 @@
         vmid: "{{ template_id }}"
         ciuser: "{{ ci_user }}"
         cipassword: "{{ ci_password }}"
+        ipconfig:
+          ipconfig0: "{{ ipconfig }}"
         update: true
 
     # - name: Start the VM
