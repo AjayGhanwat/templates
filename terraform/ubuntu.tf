@@ -29,13 +29,12 @@ resource "proxmox_vm_qemu" "coolify" {
     }
 
     disk {
-        id = 1
+        slot = 1
         backup  = true
         cache   = "none"
         format  = "raw"
         size    = "200G"
         storage = "local-lvm"
-        storage_type = "lvm"
         type    = "scsi"
     }
 
