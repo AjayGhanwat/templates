@@ -1,23 +1,5 @@
 ---
-- hosts: all
-  vars:
-    api_user: "{{ api_user }}"
-    proxmox_host: "{{ proxmox_host }}"
-    proxmox_token_id: "{{ proxmox_token_id }}"
-    proxmox_token_secret: "{{ proxmox_token_secret }}"
-    node: "{{ node }}"
-    template_id: "{{ template_id }}"
-    vm_id: "{{ vm_id }}"
-    vm_name: "{{ vm_name }}"
-    memory: "{{ memory }}"
-    cores: "{{ cores }}"
-    cpus: "{{ cpus }}"
-    disk_size: "{{ disk_size }}"
-    ci_user: "{{ ci_user }}"
-    ci_password: "{{ ci_password }}"
-    ipconfig: "{{ ipconfig }}"
-    nameserver: "{{ nameserver }}"
-    sshkeys: "{{ ssh_key }}"
+- hosts: "*"
 
   tasks:
     - name: Create VM from template
