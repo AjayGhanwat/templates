@@ -1,27 +1,46 @@
-- hosts: all
-  become: false
-  gather_facts: false
+- name: Create and configure a Proxmox VM with Cloud-Init
+  hosts: localhost
+  gather_facts: no
+
   tasks:
 
-  - name: Create Variable Files
-    include_role:
-      name: create_variables_file
-    vars:
-      variable_name: '{{item}}'
-    loop:
-      '{{variable_files}}'
+    - name: Create VM from template
+      community.general.proxmox_kvm:
+        node: "{{ node }}"
+        api_user: "{{ proxmox_user }}"
+        api_password: "{{ proxmox_password }}"
+        api_host: "{{ proxmox_host }}"
+        vmid: "{{ vm_id }}"
+        name: "{{ vm_name }}"
+        clone: "{{ template_id }}"
+        full: yes
+        memory: "{{ memory }}"
+        cores: "{{ cores }}"
+        net0: virtio,bridge=vmbr0
+        scsi0: local-lvm:{{ disk_size }}
+        ide2: local-lvm:cloudinit
+        bootdisk: scsi0
+        boot: c
+        agent: 1  # Enable QEMU guest agent
 
-- hosts: pvenodes
-  become: true
-  gather_facts: false
+    - name: Configure Cloud-Init for the VM
+      community.general.proxmox_kvm:
+        node: "{{ node }}"
+        api_user: "{{ proxmox_user }}"
+        api_password: "{{ proxmox_password }}"
+        api_host: "{{ proxmox_host }}"
+        vmid: "{{ vm_id }}"
+        ciuser: "ubuntu"                 # Default Ubuntu Cloud-Init user
+        cipassword: "ubuntu_password"    # Password for the Cloud-Init user
+        nameserver: "8.8.8.8"
+        searchdomain: "local"
+        ipconfig0: ip=dhcp
 
-  roles:
-    - download_cloud_init_images
-    - create_user_files
-
-- hosts: pvenodes[0]
-  become: false
-  gather_facts: false
-
-  roles:
-    - create_vms
+    - name: Start the VM
+      community.general.proxmox_kvm:
+        node: "{{ node }}"
+        api_user: "{{ proxmox_user }}"
+        api_password: "{{ proxmox_password }}"
+        api_host: "{{ proxmox_host }}"
+        vmid: "{{ vm_id }}"
+        state: started
