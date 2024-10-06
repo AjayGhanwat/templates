@@ -1,8 +1,8 @@
-resource "proxmox_vm_qemu" "dns" {
+resource "proxmox_vm_qemu" "proxy" {
     target_node = "pve"
-    vmid = 103
-    name = "DNS"
-    desc = "DNS Server"
+    vmid = 104
+    name = "Proxy"
+    desc = "Proxy Server"
 
     onboot = true 
     boot = "order=scsi0"
@@ -56,14 +56,13 @@ resource "proxmox_vm_qemu" "dns" {
 
     os_type = "cloud-init"
 
-    ipconfig0 = "ip=192.168.0.104/24,gw=192.168.0.1"
+    ipconfig0 = "ip=192.168.0.108/24,gw=192.168.0.1"
     nameserver = "192.168.0.1"
 
-    ciuser = "dns"
-    cipassword = "dns"
+    ciuser = "proxy"
+    cipassword = "proxy"
 
     sshkeys = <<EOF
     ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDIcwVHhxKi48DxzVQQQcTGTsR3qzCKIButh4+qfLCjr76HvTgmHMhR2BOM4SJhxeroloeHPPcqk7L4sxkh+k+WKZ4vj2FJ/Sd3kjzZvJa6VWB5/g2+kmlkQAjmq18HK9n7QwQo229C0QIp29F/Sk2i1d0bodXkEWYHfiJxSUxA/KNL/d8++z9akbxZv1x7Y8D56cOz+FIeMPtO3QscOLCUKgMKCsRY8F2KgyfO+3slB6B5Rrxlw53dQBzW1RPKacN3T6t35JdsisaD3bh7+FIAcNHryokkzjBS4iw/TSmAMxrUnynBxSQFTNiDBvFn0MZQix+ZSLhQqEqGuKPpyXN9MEJOYMaurZH63d7aXnlK5Ul/If6e3wactkgV0/EmSWRyd4/1bNWsFH7tBYnKL8B35uEmNGP6fLYEd18+MFflchtNTq1KouU/FxBqlitJ3L4nPmGkey0ssN1Nzg135mFenWSTXCq7An6eAZqSvUPPJMgswxw0YSi0V9TeIny3ZFU= admin@DESKTOP-OHGNB46
-    ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOgXNiBXY46HeHAqPog2wM7BqDsG8D28sLaklQvCQbIV root@Coolify
     EOF
 }
