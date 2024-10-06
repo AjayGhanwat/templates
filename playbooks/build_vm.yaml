@@ -46,9 +46,6 @@
         api_token_id: "{{ proxmox_token_id }}"
         api_token_secret: "{{ proxmox_token_secret }}"
         vmid: "{{ template_id }}"
-        memory: "{{ memory }}"
-        cores: "{{ cores }}"
-        sockets: "{{ cpus }}"
         disk: scsi0
         size: "{{ disk_size }}"
         state: resized
@@ -61,6 +58,9 @@
         api_token_secret: "{{ proxmox_token_secret }}"
         api_user: "{{ api_user }}"
         vmid: "{{ template_id }}"
+        memory: "{{ memory }}"
+        cores: "{{ cores }}"
+        sockets: "{{ cpus }}"
         ciuser: "{{ ci_user }}"
         cipassword: "{{ ci_password }}"
         ipconfig:
