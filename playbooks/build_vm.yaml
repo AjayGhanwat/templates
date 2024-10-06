@@ -16,12 +16,11 @@
         full: yes
         memory: "{{ memory }}"
         cores: "{{ cores }}"
-        net0: virtio,bridge=vmbr0
-        scsi0: local-lvm:{{ disk_size }}
-        ide2: local-lvm:cloudinit
-        bootdisk: scsi0
-        boot: c
-        agent: 1  # Enable QEMU guest agent
+        scsi: local-lvm:{{ disk_size }}  # Updated to use 'scsi' instead of 'scsi0'
+        net: virtio,bridge=vmbr0         # Updated to use 'net' instead of 'net0'
+        boot: c                         # Boot from disk
+        bootdisk: scsi0                 # Boot disk set as scsi0
+        agent: 1                        # Enable QEMU agent
 
     - name: Configure Cloud-Init for the VM
       community.general.proxmox_kvm:
