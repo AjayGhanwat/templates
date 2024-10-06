@@ -16,7 +16,6 @@
         full: true
         memory: "{{ memory }}"
         cores: "{{ cores }}"
-        scsi: "local-lvm:{{ disk_size }}"
         boot: c
         bootdisk: scsi0
         agent: 1
