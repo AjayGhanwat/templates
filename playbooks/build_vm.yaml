@@ -13,10 +13,10 @@
         vmid: "{{ vm_id }}"
         name: "{{ vm_name }}"
         clone: "{{ template_id }}"
-        clone_type: "full"
+        full: yes
         memory: "{{ memory }}"
         cores: "{{ cores }}"
-        cpus: "{{ cpus }}"
+        cpu: "{{ cpus }}"
         boot: c
         bootdisk: scsi0
         agent: 1
